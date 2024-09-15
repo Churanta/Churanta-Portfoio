@@ -1,0 +1,869 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Churanta Mondal | Portfolio</title>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js"></script>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+            :root {
+                --primary-color: #4a90e2;
+                --secondary-color: #f39c12;
+                --accent-color: #e74c3c;
+                --background-color: #0a192f;
+                --text-color: #e6f1ff;
+                --card-bg-color: rgba(255, 255, 255, 0.05);
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: 'Poppins', sans-serif;
+                background-color: var(--background-color);
+                color: var(--text-color);
+                line-height: 1.6;
+            }
+
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 20px;
+            }
+
+            header {
+                padding: 20px 0;
+                position: fixed;
+                width: 100%;
+                top: 0;
+                z-index: 1000;
+                background-color: rgba(10, 25, 47, 0.8);
+                backdrop-filter: blur(10px);
+                transition: all 0.3s ease;
+            }
+
+            header.sticky {
+                padding: 10px 0;
+                background-color: rgba(10, 25, 47, 0.95);
+            }
+
+            nav ul {
+                display: flex;
+                justify-content: flex-end;
+                list-style-type: none;
+            }
+
+            nav ul li {
+                margin-left: 30px;
+            }
+
+            nav ul li a {
+                color: var(--text-color);
+                text-decoration: none;
+                font-weight: 600;
+                transition: color 0.3s ease;
+                position: relative;
+            }
+
+            nav ul li a::after {
+                content: '';
+                position: absolute;
+                width: 0;
+                height: 2px;
+                bottom: -5px;
+                left: 0;
+                background-color: var(--secondary-color);
+                transition: width 0.3s ease;
+            }
+
+            nav ul li a:hover::after {
+                width: 100%;
+            }
+
+            .hero {
+                height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                position: relative;
+                overflow: hidden;
+                background: linear-gradient(135deg, rgba(74, 144, 226, 0.1) 0%, rgba(243, 156, 18, 0.1) 100%);
+            }
+
+            .hero-content {
+                z-index: 1;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+                max-width: 1200px;
+                padding: 0 20px;
+            }
+
+            .hero-text {
+                flex: 1;
+                text-align: left;
+                padding-right: 50px;
+            }
+
+            .hero h1 {
+                font-size: 4rem;
+                margin-bottom: 20px;
+                animation: fadeInUp 1s ease;
+            }
+
+            .hero p {
+                font-size: 1.5rem;
+                margin-bottom: 30px;
+                animation: fadeInUp 1s ease 0.5s both;
+            }
+
+            .hero-image {
+                flex: 1;
+                animation: fadeInRight 1s ease 1s both;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            
+            .hero-image img {
+                width: 300px;
+                height: 300px;
+                border-radius: 50%;
+                object-fit: cover;
+                position: relative;
+                z-index: 1;
+            }
+            
+            .hero-image::before {
+                content: '';
+                position: absolute;
+                width: 320px;
+                height: 320px;
+                border-radius: 50%;
+                background: linear-gradient(135deg, #3498db, #2ecc71);
+                z-index: 0;
+                animation: rotate 8s linear infinite;
+            }
+            
+            @keyframes rotate {
+                0% {
+                    transform: rotate(0deg);
+                }
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+
+            .btn {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                background-color: var(--primary-color);
+                color: var(--text-color);
+                padding: 12px 30px;
+                border-radius: 30px;
+                text-decoration: none;
+                font-weight: 600;
+                transition: all 0.3s ease;
+                animation: fadeInUp 1s ease 1s both;
+                cursor: pointer;
+                position: relative;
+                overflow: hidden;
+                width: 180px;  /* Increased width */
+                height: 60px;  /* Increased height */
+                border: none;  /* Remove default button border */
+                outline: none; /* Remove default button outline */
+            }
+
+            .btn:hover {
+                background-color: var(--secondary-color);
+                transform: translateY(-3px);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            }
+
+            .btn .lottie-container {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) scale(2.2);;
+                width: 100%;  /* Adjust as needed */
+                height: 100%; /* Adjust as needed */
+                display: none;
+            }
+
+            .btn .btn-text {
+                position: relative;
+                z-index: 1;
+            }
+
+            .section {
+                padding: 100px 0;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+                margin-bottom: 50px;
+                text-align: center;
+                position: relative;
+            }
+
+            .section-title::after {
+                content: '';
+                position: absolute;
+                width: 100px;
+                height: 3px;
+                background-color: var(--secondary-color);
+                bottom: -10px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .skills {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 30px;
+            }
+
+            .skill {
+                background-color: var(--card-bg-color);
+                padding: 30px;
+                border-radius: 15px;
+                text-align: center;
+                width: 200px;
+                transition: all 0.3s ease;
+            }
+
+            .skill:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+
+            .skill i {
+                font-size: 3rem;
+                margin-bottom: 20px;
+                color: var(--primary-color);
+            }
+
+            .projects {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 30px;
+            }
+
+            .project {
+                background-color: var(--card-bg-color);
+                border-radius: 15px;
+                overflow: hidden;
+                transition: all 0.3s ease;
+            }
+
+            .project:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            }
+
+            .project-image {
+                height: 200px;
+                background-size: cover;
+                background-position: center;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .project-image::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.7) 100%);
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+
+            .project:hover .project-image::before {
+                opacity: 1;
+            }
+
+            .project-content {
+                padding: 20px;
+            }
+
+            .project-title {
+                font-size: 1.5rem;
+                margin-bottom: 10px;
+            }
+
+            .project-description {
+                margin-bottom: 20px;
+            }
+
+            .experience {
+                display: flex;
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .experience-item {
+                background-color: var(--card-bg-color);
+                border-radius: 15px;
+                padding: 30px;
+                transition: all 0.3s ease;
+            }
+
+            .experience-item:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+
+            .experience-title {
+                font-size: 1.5rem;
+                margin-bottom: 10px;
+                color: var(--secondary-color);
+            }
+
+            .experience-company {
+                font-weight: 600;
+                margin-bottom: 10px;
+            }
+
+            .experience-date {
+                font-style: italic;
+                color: var(--accent-color);
+                margin-bottom: 10px;
+            }
+
+            footer {
+                background-color: rgba(255, 255, 255, 0.05);
+                padding: 30px 0;
+                text-align: center;
+            }
+
+            .social-links {
+                margin-bottom: 20px;
+            }
+
+            .social-links a {
+                color: var(--text-color);
+                font-size: 1.5rem;
+                margin: 0 10px;
+                transition: color 0.3s ease;
+            }
+
+            .social-links a:hover {
+                color: var(--secondary-color);
+            }
+
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            @keyframes fadeInRight {
+                from {
+                    opacity: 0;
+                    transform: translateX(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+
+            .particles {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+
+            .particle {
+                position: absolute;
+                border-radius: 50%;
+            }
+
+            @media (max-width: 768px) {
+                .hero h1 {
+                    font-size: 3rem;
+                }
+
+                .hero p {
+                    font-size: 1.2rem;
+                }
+
+                .section-title {
+                    font-size: 2rem;
+                }
+
+                .hero-content {
+                    flex-direction: column;
+                }
+
+                .hero-text, .hero-image {
+                    text-align: center;
+                    padding-right: 0;
+                }
+
+                .hero-image {
+                    margin-top: 30px;
+                }
+            }
+
+            @keyframes float {
+                0% {
+                    transform: translateY(0) rotate(0deg);
+                }
+                100% {
+                    transform: translateY(-100px) rotate(360deg);
+                }
+            }
+
+            .modal {
+                display: none;
+                position: fixed;
+                z-index: 1001;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                overflow: auto;
+                background-color: rgba(0,0,0,0.4);
+            }
+
+            .modal-content {
+                background-color: var(--background-color);
+                margin: 15% auto;
+                padding: 20px;
+                border: 1px solid var(--primary-color);
+                width: 80%;
+                max-width: 600px;
+                border-radius: 15px;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            }
+
+            .close {
+                color: #aaa;
+                float: right;
+                font-size: 28px;
+                font-weight: bold;
+            }
+
+            .close:hover,
+            .close:focus {
+                color: var(--text-color);
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+            #lottieContainer {
+                width: 100%;
+                height: 300px;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <nav class="container">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <section id="home" class="hero">
+                <div class="particles"></div>
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>Churanta Mondal</h1>
+                        <p>Full-Stack Developer | IoT Enthusiast | Machine Learning Expert</p>
+                        <button class="btn" id="getInTouchBtn">
+                            <span class="btn-text">Get in Touch</span>
+                            <div class="lottie-container" id="getInTouchLottie"></div>
+                        </button>
+                    </div>
+                    <div class="hero-image">
+                        <img src="assets/profile.jpg" alt="Churanta Mondal">
+                    </div>
+                </div>
+            </section>
+
+            <section id="about" class="section">
+                <div class="container">
+                    <h2 class="section-title" data-aos="fade-up">About Me</h2>
+                    <p data-aos="fade-up" data-aos-delay="200">I'm an ambitious computer science student with a passion for full-stack development, IoT, and machine learning. With experience leading teams to success in multiple hackathons and internships, I'm always eager to take on new challenges and push the boundaries of what's possible in technology. Currently, I'm honing my skills as an intern at <b>Sophos</b>, where I'm working on cutting-edge cybersecurity solutions.</p>
+                </div>
+            </section>
+
+            <section id="skills" class="section">
+                <div class="container">
+                    <h2 class="section-title" data-aos="fade-up">Skills</h2>
+                    <div class="skills">
+                        <div class="skill" data-aos="fade-up" data-aos-delay="200">
+                            <i class="fas fa-code"></i>
+                            <h3>Programming</h3>
+                            <p>Python, Java, JavaScript, SQL, Kotlin</p>
+                        </div>
+                        <div class="skill" data-aos="fade-up" data-aos-delay="300">
+                            <i class="fas fa-microchip"></i>
+                            <h3>IoT</h3>
+                            <p>Embedded Systems, Sensor Integration</p>
+                        </div>
+                        <div class="skill" data-aos="fade-up" data-aos-delay="400">
+                            <i class="fas fa-brain"></i>
+                            <h3>Machine Learning</h3>
+                            <p>Data Analysis, Model Development</p>
+                        </div>
+                        <div class="skill" data-aos="fade-up" data-aos-delay="500">
+                            <i class="fas fa-laptop-code"></i>
+                            <h3>Web Development</h3>
+                            <p>ReactJS, NodeJS, Flask</p>
+                        </div>
+                        <div class="skill" data-aos="fade-up" data-aos-delay="600">
+                            <i class="fas fa-mobile-alt"></i>
+                            <h3>App Development</h3>
+                            <p>Flutter, Dart</p>
+                        </div>
+                        <div class="skill" data-aos="fade-up" data-aos-delay="700">
+                            <i class="fas fa-project-diagram"></i>
+                            <h3>Project Management</h3>
+                            <p>Team Leadership, Agile Methodologies</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="projects" class="section">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Projects</h2>
+                <div class="projects">
+                    <div class="project" data-aos="fade-up" data-aos-delay="200">
+                        <div class="project-image" style="background-image: url('https://euphelity.in/static/media/Background%20photo.cb63d95c38e17a851d76.png')"></div>
+                        <div class="project-content">
+                            <h3 class="project-title">Educational App for Special Needs</h3>
+                            <p class="project-description">Developed during internship at Euphelity Private Limited, available on Google Play Store.</p>
+                            <button class="btn learn-more-btn" data-project="educational-app">
+                                <span class="btn-text">Learn More</span>
+                                <div class="lottie-container"></div>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="project" data-aos="fade-up" data-aos-delay="300">
+                        <div class="project-image" style="background-image: url('https://img.jagranjosh.com/images/2024/February/2822024/list-of-isro-missions-till-2024-and-upcoming.webp')"></div>
+                        <div class="project-content">
+                            <h3 class="project-title">ISRO System Device Drivers</h3>
+                            <p class="project-description">Worked on system device drivers for space programs during internship at ISRO.</p>
+                            <button class="btn learn-more-btn" data-project="isro-drivers">
+                                <span class="btn-text">Learn More</span>
+                                <div class="lottie-container"></div>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="project" data-aos="fade-up" data-aos-delay="400">
+                        <div class="project-image" style="background-image: url('https://c-huk.cdacb.in/assets/img/Cdac_img.jpg')"></div>
+                        <div class="project-content">
+                            <h3 class="project-title">C-DAC Full Stack Project</h3>
+                            <p class="project-description">Government project involving full stack development and machine learning.</p>
+                            <button class="btn learn-more-btn" data-project="cdac-project">
+                                <span class="btn-text">Learn More</span>
+                                <div class="lottie-container"></div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+            <section id="experience" class="section">
+                <div class="container">
+                    <h2 class="section-title" data-aos="fade-up">Experience</h2>
+                    <div class="experience">
+                        <div class="experience-item" data-aos="fade-up" data-aos-delay="200">
+                            <h3 class="experience-title">Cybersecurity Intern</h3>
+                            <p class="experience-company">Sophos - Remote</p>
+                            <p class="experience-date">September 2024 - Present</p>
+                            <p>Currently working on cutting-edge cybersecurity solutions, enhancing my skills in threat detection and prevention.</p>
+                        </div>
+                        <div class="experience-item" data-aos="fade-up" data-aos-delay="300">
+                            <h3 class="experience-title">WBL Intern</h3>
+                            <p class="experience-company">C-DAC - Bengaluru, India</p>
+                            <p class="experience-date">March 2024 - August 2024</p>
+                            <p>Worked on Government project which includes full stack development and machine Learning.</p>
+                        </div>
+                        <div class="experience-item" data-aos="fade-up" data-aos-delay="400">
+                            <h3 class="experience-title">Intern</h3>
+                            <p class="experience-company">ISRO - Mangalore, India</p>
+                            <p class="experience-date">April 2024 - July 2024</p>
+                            <p>Worked on system Device Drivers for Space Programs</p>
+                        </div>
+                        <div class="experience-item" data-aos="fade-up" data-aos-delay="500">
+                            <h3 class="experience-title">Full Stack Developer Intern</h3>
+                            <p class="experience-company">Euphelity Private Limited - Online</p>
+                            <p class="experience-date">December 2023 - April 2024</p>
+                            <p>Developed an educational app for special needs individuals, available on Google Play Store.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact" class="section">
+                <div class="container">
+                    <h2 class="section-title" data-aos="fade-up">Get in Touch</h2>
+                    <div class="contact-info" data-aos="fade-up" data-aos-delay="200">
+                        <p>Email: churantamondal321@gmail.com</p>
+                        <p>Phone: +91 6291731887</p>
+                        <p>Location: Bengaluru, Karnataka</p>
+                    </div>
+                    <div class="social-links" data-aos="fade-up" data-aos-delay="300">
+                        <a href="https://github.com/Churanta" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="container">
+                <p>&copy; 2024 Churanta Mondal. All rights reserved.</p>
+            </div>
+        </footer>
+
+        <div id="projectModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2 id="modalTitle"></h2>
+                <div id="lottieContainer"></div>
+                <p id="modalDescription"></p>
+            </div>
+        </div>
+
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+            // Initialize AOS
+            AOS.init({
+                duration: 1000,
+                once: true,
+            });
+
+            // Particle animation
+            const particlesContainer = document.querySelector('.particles');
+            const particleCount = 50;
+            const colors = ['#4a90e2', '#f39c12', '#e74c3c', '#2ecc71', '#9b59b6'];
+
+            for (let i = 0; i < particleCount; i++) {
+                createParticle();
+            }
+
+            function createParticle() {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                const size = Math.random() * 5 + 1;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.backgroundColor = color;
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                particlesContainer.appendChild(particle);
+                
+                animateParticle(particle);
+            }
+
+            function animateParticle(particle) {
+                const animationDuration = Math.random() * 10 + 5;
+                const animationDelay = Math.random() * 5;
+                
+                particle.style.animation = `float ${animationDuration}s ${animationDelay}s infinite alternate`;
+            }
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    const headerOffset = 80;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Sticky header
+            const header = document.querySelector('header');
+            const sticky = header.offsetTop;
+
+            const stickyHeader = () => {
+                if (window.pageYOffset > sticky) {
+                    header.classList.add('sticky');
+                } else {
+                    header.classList.remove('sticky');
+                }
+            };
+
+            window.addEventListener('scroll', stickyHeader);
+
+            // Typing effect for hero text
+            const heroText = document.querySelector('.hero p');
+            const text = heroText.textContent;
+            heroText.textContent = '';
+
+            let i = 0;
+            const typingEffect = () => {
+                if (i < text.length) {
+                    heroText.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typingEffect, 50);
+                }
+            };
+
+            setTimeout(typingEffect, 1000); // Start typing effect after 1 second
+
+
+
+            // Button animation function
+            function animateButton(button, animationPath, onComplete) {
+                const btnText = button.querySelector('.btn-text');
+                const lottieContainer = button.querySelector('.lottie-container');
+                
+                btnText.style.display = 'none';
+                lottieContainer.style.display = 'block';
+                
+                const animation = lottie.loadAnimation({
+                    container: lottieContainer,
+                    renderer: 'svg',
+                    loop: false,
+                    autoplay: true,
+                    path: animationPath
+                });
+
+                animation.addEventListener('complete', () => {
+                    lottieContainer.style.display = 'none';
+                    btnText.style.display = 'inline';
+                    if (onComplete) onComplete();
+                });
+                
+                
+                // Set animation size to fit the button
+                animation.setSpeed(0.8);
+                lottieContainer.style.width = '100%';
+                lottieContainer.style.height = '100%';
+
+                animation.addEventListener('complete', () => {
+                    lottieContainer.classList.remove('active');
+                    btnText.classList.remove('hidden');
+                    if (onComplete) onComplete();
+                    animation.destroy();
+                });
+            }
+
+                    // Get in Touch button animation
+                    const getInTouchBtn = document.getElementById('getInTouchBtn');
+                    getInTouchBtn.addEventListener('click', () => {
+                        animateButton(getInTouchBtn, 'assets/lottie/get_in_touch.json', () => {
+                            const contactSection = document.getElementById('contact');
+                            contactSection.scrollIntoView({ behavior: 'smooth' });
+                        });
+                    });
+            
+
+            // Project modal
+            const modal = document.getElementById('projectModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDescription = document.getElementById('modalDescription');
+            const closeBtn = document.getElementsByClassName('close')[0];
+            const lottieContainer = document.getElementById('lottieContainer');
+            let projectAnimation;
+
+            const projectDetails = {
+                'educational-app': {
+                    title: 'Educational App for Special Needs',
+                    description: 'This project involved developing a comprehensive educational app tailored for individuals with special needs. The app incorporates adaptive learning techniques, interactive exercises, and progress tracking to provide a personalized learning experience. Key features include customizable difficulty levels, text-to-speech functionality, and a user-friendly interface designed for accessibility.'
+                },
+                'isro-drivers': {
+                    title: 'ISRO System Device Drivers',
+                    description: 'During my internship at ISRO, I contributed to the development of system device drivers for space programs. This involved writing low-level software to interface with specialized hardware components used in satellite systems. The project required a deep understanding of embedded systems, real-time operating systems, and space-grade hardware specifications.'
+                },
+                'cdac-project': {
+                    title: 'C-DAC Full Stack Project',
+                    description: 'As part of a government initiative, I worked on a full-stack project at C-DAC that combined web development with machine learning. The project aimed to create a platform for data analysis and visualization of large-scale government datasets. I was responsible for developing the front-end interface using React, implementing RESTful APIs with Node.js, and integrating machine learning models for predictive analytics.'
+                }
+            };
+
+
+            document.querySelectorAll('.learn-more-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const project = this.getAttribute('data-project');
+                    animateButton(this, 'assets/lottie/plane.json', () => {
+                        modalTitle.textContent = projectDetails[project].title;
+                        modalDescription.textContent = projectDetails[project].description;
+                        modal.style.display = 'block';
+                        
+                        if (projectAnimation) {
+                            projectAnimation.destroy();
+                        }
+                        
+                        projectAnimation = lottie.loadAnimation({
+                            container: lottieContainer,
+                            renderer: 'svg',
+                            loop: true,
+                            autoplay: true,
+                            path: 'assets/lottie/plane.json'
+                        });
+                    });
+                });
+            });
+
+
+            closeBtn.onclick = function() {
+                modal.style.display = 'none';
+                if (projectAnimation) {
+                    projectAnimation.stop();
+                }
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                    if (projectAnimation) {
+                        projectAnimation.stop();
+                    }
+                }
+            }
+
+        </script>
+    </body>
+    </html>
